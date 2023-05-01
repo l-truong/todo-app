@@ -1,0 +1,238 @@
+/* VARIABLES */
+/* STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "montserrat", sans-serif;
+}
+
+body {
+  background: #f2709c; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #ff9472, #f2709c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #313154;
+  font-family: "montserrat", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-user-select: none; /* Safari */ /* IE 10 and IE 11 */
+  -moz-user-select: none;
+       user-select: none; /* Standard syntax */
+}
+body .container {
+  transition: 0.4s;
+  height: 47rem;
+  width: 25rem;
+  border-radius: 2.5rem;
+  border: 0.5rem solid black;
+  box-shadow: 16px 28px 29px -16px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 16px 28px 29px -16px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 16px 28px 29px -16px rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+  background: #EEE;
+}
+body .container section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5em;
+  /* COMMON SELECT BOX */
+  /* CREATE SELECTION */
+  /* TODO LIST */
+  /* CLEAR List */
+}
+body .container section h3 {
+  color: #313154;
+  margin-bottom: 1rem;
+}
+body .container section input[type=radio], body .container section input[type=checkbox] {
+  display: none;
+}
+body .container section input:checked ~ .bubble::after {
+  width: 0.75rem;
+  height: 0.75rem;
+  opacity: 1;
+}
+body .container section input:not([type=radio]):not([type=checkbox]), body .container section button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: initial;
+}
+body .container section .bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 0.125rem solid #709CF2;
+}
+body .container section .bubble.personal {
+  border-color: #f2709c;
+}
+body .container section .bubble::after {
+  content: "";
+  display: block;
+  opacity: 0;
+  background-color: #709CF2;
+  border-radius: 50%;
+  transition: 0.2s ease-in-out;
+}
+body .container section .bubble.personal::after {
+  background-color: #f2709c;
+}
+body .container section.create-todo form input[type=text] {
+  display: block;
+  width: 100%;
+  font-size: 1.125rem;
+  padding: 1rem 1.5rem;
+  color: #313154;
+  background-color: #FFF;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+body .container section.create-todo form .options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  margin-bottom: 1rem;
+}
+body .container section.create-todo form .options .option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: #FFF;
+  border-radius: 5rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+body .container section.create-todo form .options #option-1:checked:checked ~ .option-1 {
+  background: #709CF2;
+}
+body .container section.create-todo form .options #option-1:checked:checked ~ .option-1 span {
+  color: #fff;
+}
+body .container section.create-todo form .options #option-2:checked:checked ~ .option-2 {
+  background: #f2709c;
+}
+body .container section.create-todo form .options #option-2:checked:checked ~ .option-2 span {
+  color: #fff;
+}
+body .container section.create-todo form .sumbit {
+  display: flex;
+  flex-direction: row;
+}
+body .container section.create-todo form .sumbit input[type=text] {
+  margin-bottom: 0rem;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
+}
+body .container section.create-todo form .sumbit button {
+  display: block;
+  width: 20%;
+  font-size: 1.125rem;
+  color: #FFF;
+  background-color: #ff9472;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+body .container section.create-todo form .sumbit button:hover {
+  opacity: 0.75;
+}
+body .container section.todo-list .list {
+  margin: 1rem 0;
+  max-height: 19.5rem;
+  height: 19.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-color: #313154 #888;
+  scrollbar-width: thin;
+}
+body .container section.todo-list .list .v-enter-active, body .container section.todo-list .list .v-leave-active {
+  transition: opacity 0.2s ease;
+}
+body .container section.todo-list .list .v-enter-from, body .container section.todo-list .list .v-leave-to {
+  opacity: 0;
+}
+body .container section.todo-list .list .todo-item {
+  display: flex;
+  align-items: center;
+  background-color: #FFF;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+body .container section.todo-list .list .todo-item label {
+  display: block;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+body .container section.todo-list .list .todo-item .todo-content {
+  flex: 1 1 0%;
+}
+body .container section.todo-list .list .todo-item .todo-content input {
+  color: #313154;
+  font-size: 1.125rem;
+}
+body .container section.todo-list .list .todo-item .actions {
+  display: flex;
+  align-items: center;
+}
+body .container section.todo-list .list .todo-item .actions .edit {
+  margin-right: 0.5rem;
+  background-color: #f2709c;
+}
+body .container section.todo-list .list .todo-item .actions .delete {
+  font-size: 1.25rem;
+  color: #EE417C;
+}
+body .container section.todo-list .list .todo-item .actions .delete :hover {
+  opacity: 0.8;
+  transition: 1s;
+}
+body .container section.todo-list .list .todo-item.done .todo-content input {
+  text-decoration: line-through;
+  color: #888;
+}
+body .container section.clear-todo .clear-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+}
+body .container section.clear-todo .clear-options .clear-completed {
+  grid-area: 1/1/2/4;
+  padding: 1rem 0rem;
+  background-color: #ff9472;
+  color: #FFF;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  font-size: 1rem;
+}
+body .container section.clear-todo .clear-options .clear-completed:hover {
+  opacity: 0.8;
+}
+body .container section.clear-todo .clear-options .clear-all {
+  grid-area: 1/4/2/6;
+  padding: 1rem 0rem;
+  background-color: #EE417C;
+  color: #FFF;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  font-size: 1rem;
+}
+body .container section.clear-todo .clear-options .clear-all:hover {
+  opacity: 0.8;
+}
+body .container section.clear-todo .clear-options svg {
+  margin-left: 0.25rem;
+}/*# sourceMappingURL=style.css.map */

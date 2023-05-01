@@ -1,0 +1,275 @@
+/* VARIABLES */
+$primary: #f2709c;
+$secondary: #ff9472;
+$business:#709CF2;
+$personal: $primary;
+$danger: #EE417C;
+$light:#EEE;
+$grey:#888;
+$dark:#313154;   
+
+/* STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'montserrat', sans-serif;
+}
+body {
+    background: $primary;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, $secondary,  $primary);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, $secondary,  $primary); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: $dark;
+    font-family: 'montserrat', sans-serif;    
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+
+    .container {
+        transition: 0.4s;      
+        height: 47rem;
+        width: 25rem;
+        border-radius: 2.5rem;
+        border: 0.5rem solid black;
+        box-shadow: 16px 28px 29px -16px rgba(0,0,0,0.6);
+        -webkit-box-shadow: 16px 28px 29px -16px rgba(0,0,0,0.6);
+        -moz-box-shadow: 16px 28px 29px -16px rgba(0,0,0,0.6);
+        padding: 1rem;
+        background: $light;
+
+        section {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5em;            
+            h3 {
+                color: $dark;
+                margin-bottom: 1rem;
+            }
+
+            /* COMMON SELECT BOX */
+            input {
+                &[type="radio"], &[type="checkbox"] {
+                  display: none;
+                }                
+                &:checked ~ .bubble::after {
+                    width: 0.75rem;
+                    height: 0.75rem;
+                    opacity: 1;
+                }
+            }  
+            input:not([type="radio"]):not([type="checkbox"]), button {
+                appearance: none;
+                border: none;
+                outline: none;
+                background: none;
+                cursor: initial;
+            }
+            .bubble {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 1.25rem;
+                height: 1.25rem;
+                border-radius: 50%;
+                border: 0.125rem solid $business;
+            
+                &.personal {
+                    border-color: $personal;
+                }            
+                &::after {
+                    content: "";
+                    display: block;
+                    opacity: 0;
+                    background-color: $business;
+                    border-radius: 50%;
+                    transition: 0.2s ease-in-out;
+                }            
+                &.personal::after {
+                    background-color: $personal;                
+                }
+            }  
+
+            
+            /* CREATE SELECTION */
+            &.create-todo {
+                form {
+                    input[type="text"] {
+                        display: block;
+                        width: 100%;
+                        font-size: 1.125rem;
+                        padding: 1rem 1.5rem;
+                        color: $dark;
+                        background-color: #FFF;
+                        border-radius: 0.5rem;
+                        margin-bottom: 1.5rem;
+                    }  
+                    .options{
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        grid-gap: 1rem;
+                        margin-bottom: 1rem;
+                        
+                        .option{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 0.5rem;
+                            background-color: #FFF;
+                            border-radius: 5rem;
+                            cursor: pointer;
+                            transition: 0.2s ease-in-out;                            
+                        }
+                        #option-1:checked:checked ~ .option-1 {
+                            background: $business;       
+                            span{
+                                color: #fff;
+                            }                                 
+                        }
+                        #option-2:checked:checked ~ .option-2 {
+                            background: $primary;
+                            span{
+                                color: #fff;
+                            }
+                        }
+                    }
+                    .sumbit { 
+                        display:flex;
+                        flex-direction:row;   
+
+                        input[type="text"] {
+                            margin-bottom: 0rem;
+                            border-radius: 0.5rem 0rem 0rem 0.5rem ;
+                        }                           
+                        button {
+                            display: block;
+                            width: 20%;
+                            font-size: 1.125rem;
+                            color: #FFF;
+                            background-color: $secondary;
+                            border-radius: 0rem 0.5rem 0.5rem 0rem ;
+                            cursor: pointer;
+                            transition: 0.2s ease-in-out;
+                        
+                            &:hover {
+                            opacity: 0.75;
+                            }
+                        }       
+                    }
+                }    
+            }       
+            
+            /* TODO LIST */
+            &.todo-list {
+                .list {
+                    margin: 1rem 0;
+                    max-height: 19.5rem;
+                    height: 19.5rem;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    scrollbar-color: $dark $grey;
+                    scrollbar-width: thin;
+                    .v-enter-active, .v-leave-active {
+                      transition: opacity 0.2s ease;
+                    }                    
+                    .v-enter-from, .v-leave-to {
+                      opacity: 0;
+                    }
+                    .todo-item {
+                        display: flex;
+                        align-items: center;
+                        background-color: #FFF;
+                        padding: 1rem;
+                        border-radius: 0.5rem;
+                        margin-bottom: 1rem;
+                
+                        label {
+                        display: block;
+                        margin-right: 1rem;
+                        cursor: pointer;
+                        
+                        }    
+                        .todo-content {
+                        flex: 1 1 0%;    
+                        input {
+                            color: $dark;
+                            font-size: 1.125rem;
+                        }
+                        }    
+                        .actions {
+                            display: flex;
+                            align-items: center;
+                        
+                            .edit {
+                                margin-right: 0.5rem;
+                                background-color: $primary;
+                            }    
+                            .delete {
+                                font-size: 1.25rem;
+                                color: $danger;                                                                  
+                                :hover {
+                                    opacity: 0.8;
+                                    transition: 1s;
+                                }                     
+                            }
+                        }    
+                        &.done {
+                            .todo-content {
+                                input {
+                                    text-decoration: line-through;
+                                    color: $grey;
+                                }
+                            }
+                        }
+                    }
+                }      
+            }
+
+            /* CLEAR List */
+            &.clear-todo {
+                .clear-options {
+                    display: grid;
+                    grid-template-columns: repeat(5, 1fr);
+                    grid-template-rows: 1fr;       
+                    
+                    .clear-completed {  
+                        grid-area: 1 / 1 / 2 / 4;
+                        padding: 1rem 0rem;
+                        background-color: $secondary;
+                        color: #FFF;
+                        border-radius: 0.5rem 0rem 0rem 0.5rem;
+                        cursor: pointer;
+                        transition: 0.2s ease-in-out;     
+                        font-size: 1rem;
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                    }
+                    .clear-all {      
+                        grid-area: 1 / 4 / 2 / 6;
+                        padding: 1rem 0rem;
+                        background-color: $danger;
+                        color: #FFF;
+                        border-radius: 0rem 0.5rem 0.5rem 0rem;
+                        cursor: pointer;
+                        transition: 0.2s ease-in-out;                        
+                        font-size: 1rem;
+                        
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                    }  
+                    svg {
+                        margin-left: 0.25rem;
+                    }
+                }
+            }
+        }    
+    }
+}            
